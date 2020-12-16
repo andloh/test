@@ -4,6 +4,14 @@ on:
     branches:
     - master
 jobs:
+#  lintAllTheThings:
+#    runs-on: ubuntu-latest
+#    steps:
+#    - uses: actions/checkout@v1
+#    - name: yaml-lint
+#      uses: ibiqlik/action-yamllint@v3
+#      with: 
+#        config_file: .github/.yamllint-config.yaml
   validation:
     runs-on: ubuntu-latest
     steps:
@@ -16,12 +24,14 @@ jobs:
           openshift: true
           comment: true
           ignored_filename_patterns: gha.yaml
-  autoapprove:
+  approve-and-merge:
     needs: [validation]
-    if: ${{ github.actor.name == 'andloh' }}
     runs-on: ubuntu-latest
     steps:
     - uses: hmarr/auto-approve-action@v2.0.0
       name: autoapprove
+    - uses: ridedott/merge-me-action@v1
+      name: Approve and Merge
       with:
-        github-token: "${{ secrets.GITHUB_TOKEN }}"
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_LOGIN: andloh[ci]
