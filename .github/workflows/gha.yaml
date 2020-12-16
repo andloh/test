@@ -23,4 +23,4 @@ jobs:
     - uses: ridedott/merge-me-action@v1
       name: Approve and Merge
       with:
-        github-token: "${{ secrets.GITHUB_TOKEN }}"
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
