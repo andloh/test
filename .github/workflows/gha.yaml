@@ -11,7 +11,7 @@ jobs:
     - name: yaml-lint
       uses: ibiqlik/action-yamllint@v3
       with: 
-        config_file: ../.yamllint-config.yaml
+        config_file: .github/.yamllint-config.yaml
   autoapprove:
     runs-on: ubuntu-latest
     steps:
