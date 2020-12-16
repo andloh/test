@@ -23,7 +23,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           openshift: true
           comment: true
-          #ignored_filename_patterns: ".github/workflows/gha.yaml"
+          ignored_filename_patterns: .github/workflows/gha.yaml
   autoapprove:
     needs: [validation]
     runs-on: ubuntu-latest
