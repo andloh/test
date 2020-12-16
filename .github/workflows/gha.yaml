@@ -24,6 +24,7 @@ jobs:
           openshift: true
           comment: true
   autoapprove:
+    needs: [validation]
     runs-on: ubuntu-latest
     steps:
     - uses: hmarr/auto-approve-action@v2.0.0
