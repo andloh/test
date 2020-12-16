@@ -1,17 +1,28 @@
-name: Lint, approve and merge
+name: Verify and approve
 on:
   pull_request:
     branches:
     - master
 jobs:
-  lintAllTheThings:
+#  lintAllTheThings:
+#    runs-on: ubuntu-latest
+#    steps:
+#    - uses: actions/checkout@v1
+#    - name: yaml-lint
+#      uses: ibiqlik/action-yamllint@v3
+#      with: 
+#        config_file: .github/.yamllint-config.yaml
+  validation:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
-    - name: yaml-lint
-      uses: ibiqlik/action-yamllint@v3
-      with: 
-        config_file: .github/.yamllint-config.yaml
+      - uses: actions/checkout@v2
+      - name: validate kubernetes manifests
+        uses: makocchi-git/actions-k8s-manifests-validate-kubeval@1.0.0
+        with:
+          files: .
+          token: ${{ secrets.GITHUB_TOKEN }}
+          openshift: true
+          comment: true
   autoapprove:
     runs-on: ubuntu-latest
     steps:
