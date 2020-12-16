@@ -3,7 +3,7 @@ kind: DeploymentConfig
 metadata:
   annotations:
   labels:
-    app: test-sms
+    app: test-sms1
   name: test-sms
   namespace: test-test
 spec:
